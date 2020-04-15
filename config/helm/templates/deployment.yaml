@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: docker-magento
+spec:
+  replicas: {{ (index .Values.environments .Values.ingress.environment).replicas }}
+  template:
+    metadata:
+      labels:
+        app: docker-magento
+    spec:
+      containers:
+      - name: docker-magento
+        image: "alexcheng/magento2"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+            name: http
+        env:
+          - name: MYSQL_HOST
+            value: "mysql"

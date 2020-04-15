@@ -1,0 +1,7 @@
+environments:
+  dev:
+    host: magento2.dev.mytheresa.services
+    replicas: 1
+
+ingress:
+  environment: dev

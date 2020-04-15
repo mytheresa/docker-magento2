@@ -1,0 +1,14 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docker-magento
+spec:
+  rules:
+  - host: {{ (index .Values.environments .Values.ingress.environment).host }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: docker-magento
+          servicePort: http
